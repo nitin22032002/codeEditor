@@ -64,7 +64,10 @@ def showfile():
 def newfile():
     global a,b,path
     try:
-        mainf=open(path,"r").read().rstrip("\n")
+        mainf=open(path,"r")
+        data=mainf.read().rstrip("\n")
+        mainf.close()
+        mainf=data
     except:
         mainf=""
     b='yes'
@@ -110,7 +113,10 @@ tryobject=2
 def openfile():
     global path
     try:
-        mainf=open(path,'r').read().rstrip("\n")
+        mainf=open(path,'r')
+        data=mainf.read().rstrip("\n")
+        mainf.close()
+        mainf=data
     except:
         mainf=""
     if (str(maintext.get(1.0,END)).rstrip("\n")!="" and path=="") or mainf!=(str(maintext.get(1.0,END))).rstrip("\n") and tryobject!=1 :
@@ -215,7 +221,11 @@ def redo():
 import time
 varcheck=0
 def Run():
-    global path,varcheck
+    global path,varcheck,intelegent
+    var=1
+    if(intelegent%2!=0):
+        intelegent+=1
+        var=0
     try:
         a.close()
     except Exception as e:
@@ -256,10 +266,16 @@ def Run():
     except Exception as e:
         print(e)
         pg.alert("This file can't run")
+    finally:
+        if(a==0):
+            intelegent+=1
 def runinconsole():
     global path,a,varcheck
     try:
-        mainf =open(path,"r").read().rstrip("\n")
+        mainf = open(path, "r")
+        data = mainf.read().rstrip("\n")
+        mainf.close()
+        mainf = data
     except:
         mainf = ""
     if (mainf != "" and path == "") or mainf != str(maintext.get(1.0, END)).rstrip("\n"):
@@ -383,7 +399,10 @@ def addOnline(url,name):
 def onlinerepositry(url,name):
     global path, a
     try:
-        mainf = open(path,"r").read().rstrip("\n")
+        mainf = open(path, "r")
+        data = mainf.read().rstrip("\n")
+        mainf.close()
+        mainf = data
     except:
         mainf = ""
     if (mainf != "" and path == "") or mainf != str(maintext.get(1.0, END)).rstrip("\n"):
